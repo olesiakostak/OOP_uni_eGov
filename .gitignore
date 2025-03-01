@@ -23,6 +23,8 @@
 # Compiled Static libraries
 *.lai
 *.la
+
+*.vscode
 *.a
 *.lib
 
