@@ -17,7 +17,6 @@ protected:
     };
     User user;
 
-    
 public:
     Citizen(string user_name, int user_age)
     {
