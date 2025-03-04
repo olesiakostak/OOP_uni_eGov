@@ -15,65 +15,74 @@ protected:
         string surname;
         string profession;
     };
-    User user;
+    User current_user;
 
 public:
-    Citizen(string user_name, int user_age)
-    {
-        user.name = user_name;
-        user.age = user_age;
-    }
+    Citizen() {}
     void Register();
     void ShowUserInformation();
 };
 
 class Student: public Citizen 
 {
-private:
-
 public:
     using Citizen::Citizen;
 };
-class Employee: public Citizen {};
-class Entrepreneur: public Citizen {};
+class Employee: public Citizen 
+{
+public:
+    using Citizen::Citizen;
+};
+class Entrepreneur: public Citizen 
+{
+public:
+    using Citizen::Citizen;
+};
 
 
 
 
 int main()
 {
+    Citizen* user = nullptr;
     cout << "You're welcome to our e-Government" << endl << endl;
     int user_choice;
     while (true)
     {
         cout << "Choose an option to continue (enter a number): " << endl;
-        cout << "1. Register \n 2. Find out social assistance \n 3. Calculate taxes \n 4. Exit \n"; 
+        cout << "1. Register\n2. Show my information\n2. Find out social assistance\n3. Calculate taxes\n4. Exit \n"; 
         cin >> user_choice;
         switch (user_choice)
         {
-            case '1':
-                "Which category you belong to (enter a number): \n 1. Student. \n 2. Employee. \n 3. Enterpreneur. \n";
+            case 1:
+                cout << "Which category do you belong to (enter a number):\n1. Student. \n2. Employee. \n3. Enterpreneur. \n";
                 int user_category;
                 cin >> user_category;
                 switch (user_category)
                 {
-                    case '1':
-                    Employee user;
-                    user.Register();
+                    case 1:
+                        user = new Student();
                         break;
-                    case '2':
+                    case 2:
+                        user = new Employee();
                         break;
-                    case '3':
+                    case 3:
+                        user = new Entrepreneur();
                         break;
                     default:
+                        cout << "You have entered not correct data";
                         break;
                 }
+                if (user)
+                {
+                    user->Register();
+                }
                 break;
-            case '2':
+            case 2:
                 break;
-            case '3':
+            case 3:
                 break;
-            case '4':
+            case 4:
                 break;
             default:
                 cout << "You have entered not correct answer.";
@@ -81,30 +90,34 @@ int main()
             }
             break;
     }
-    Student ct("f", 3);
-    ct.ShowUserInformation();
+    delete user;
     return 0;
 }
 
 void Citizen::ShowUserInformation()
 {
-    cout << "Name: " << user.name << endl;
-    cout << "Age: " << user.age << endl; 
+    cout << "Name and surname: " << current_user.name << " " << current_user.surname << endl;
+    cout << "Age: " << current_user.age << endl;
+    cout << "Profession: " << current_user.profession << endl;
+    cout << "Work experience: " << current_user.work_experience << endl; 
 }
 void Citizen::Register()
 {
-    cout << "Enter your \n Name: "; 
-    cin >> user.name;
-    cout << "\n Surname: ";
-    cin >> user.surname;
-    cout << "\n Age: ";
-    cin >> user.age;
-    cout << "\n Profession: ";
-    cin >> user.profession;
-    cout << "\n Work experience: ";
-    cin >> user.work_experience;
-
-    cin >> 
-
-
+    cout << "Enter your \nName: "; 
+    cin >> current_user.name;
+    cout << "Surname: ";
+    cin >> current_user.surname;
+    cout << "Age: ";
+    cin >> current_user.age;
+    cout << "Profession: ";
+    cin >> current_user.profession;
+    cout << "Work experience: ";
+    cin >> current_user.work_experience;
 }
+
+
+// current_user.age = user_age;
+//         current_user.work_experience = user_work_experience;
+//         current_user.name = user_name;
+//         current_user.surname = user_surname;
+//         current_user.profession = user_profession;   
