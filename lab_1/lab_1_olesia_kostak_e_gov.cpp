@@ -10,6 +10,7 @@ protected:
     struct User
     {
         int age;
+        int work_experience;
         string name;
         string surname;
         string profession;
@@ -36,6 +37,9 @@ public:
 class Employee: public Citizen {};
 class Entrepreneur: public Citizen {};
 
+
+
+
 int main()
 {
     cout << "You're welcome to our e-Government" << endl << endl;
@@ -47,20 +51,35 @@ int main()
         cin >> user_choice;
         switch (user_choice)
         {
-        case '1':
-            /* code */
+            case '1':
+                "Which category you belong to (enter a number): \n 1. Student. \n 2. Employee. \n 3. Enterpreneur. \n";
+                int user_category;
+                cin >> user_category;
+                switch (user_category)
+                {
+                    case '1':
+                    Employee user;
+                    user.Register();
+                        break;
+                    case '2':
+                        break;
+                    case '3':
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case '2':
+                break;
+            case '3':
+                break;
+            case '4':
+                break;
+            default:
+                cout << "You have entered not correct answer.";
+                break;
+            }
             break;
-        case '2':
-            break;
-        case '3':
-            break;
-        case '4':
-            break;
-        default:
-            cout << "You have entered not correct answer.";
-            break;
-        }
-        break;
     }
     Student ct("f", 3);
     ct.ShowUserInformation();
@@ -69,19 +88,21 @@ int main()
 
 void Citizen::ShowUserInformation()
 {
-    cout << "Name: " << name << endl;
-    cout << "Age: " << age << endl; 
+    cout << "Name: " << user.name << endl;
+    cout << "Age: " << user.age << endl; 
 }
 void Citizen::Register()
 {
     cout << "Enter your \n Name: "; 
-    cin >> name;
+    cin >> user.name;
     cout << "\n Surname: ";
-    cin >> surname;
+    cin >> user.surname;
     cout << "\n Age: ";
-    cin >> age;
+    cin >> user.age;
     cout << "\n Profession: ";
-    cin >> progession;
+    cin >> user.profession;
+    cout << "\n Work experience: ";
+    cin >> user.work_experience;
 
     cin >> 
 
