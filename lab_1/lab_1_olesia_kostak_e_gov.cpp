@@ -7,6 +7,7 @@ class Citizen
 protected:
     string filename = "user_data.txt";
     int social_assistance = 0;
+    int tax = 0;
     struct User
     {
         int age;
@@ -22,25 +23,30 @@ public:
     Citizen() {}
     void Register();
     void ShowUserInformation();
+    void CalculateSocialAssistance() {};
+    void CalculateTaxes() {};
 };
 
 class Student: public Citizen 
 {
 public:
     using Citizen::Citizen;
-    int CalculateSocialAssistance();
+    void CalculateSocialAssistance();
+    void CalculateTaxes();
 };
 class Employee: public Citizen 
 {
 public:
     using Citizen::Citizen;
-    int CalculateSocialAssistance();
+    void CalculateSocialAssistance();
+    void CalculateTaxes();
 };
 class Entrepreneur: public Citizen 
 {
 public:
     using Citizen::Citizen;
-    int CalculateSocialAssistance();
+    void CalculateSocialAssistance();
+    void CalculateTaxes();
 };
 
 
@@ -49,14 +55,18 @@ public:
 int main()
 {
     Citizen* user = nullptr;
-    string citizen_categories[] = {"student", "employee", "entrepreneur"};
     cout << "You're welcome to our e-Government" << endl << endl;
-    int user_choice;
     while (true)
     {
         cout << "Choose an option to continue (enter a number): " << endl;
-        cout << "1. Register\n2. Show my information\n2. Find out social assistance\n3. Calculate taxes\n4. Exit \n"; 
+        cout << "1. Register\n2. Calculate social assistance\n3. Calculate taxes\n4. Display information\n5. Exit \n"; 
+        int user_choice;
         cin >> user_choice;
+        if (!user && user_choice != 1) 
+        {
+            cout << endl << "You are not registered" << endl; 
+            continue;
+        }
         switch (user_choice)
         {
             case 1:
@@ -75,25 +85,27 @@ int main()
                         user = new Entrepreneur();
                         break;
                     default:
-                        cout << "You have entered not correct data";
+                        cout << endl << "You have entered not correct data" << endl;
+                        delete user;
                         break;
                 }
-                if (user)
-                {
-                    user->Register();
-                }
+                if (user) user->Register();
                 break;
             case 2:
+                user->CalculateSocialAssistance();
                 break;
             case 3:
+                user->CalculateTaxes();
                 break;
             case 4:
+                user->ShowUserInformation();
                 break;
+            case 5:
+                return 0;
             default:
-                cout << "You have entered not correct answer.";
+                cout << endl << "You have entered not correct answer." << endl;
                 break;
             }
-            break;
     }
     delete user;
     return 0;
@@ -105,6 +117,9 @@ void Citizen::ShowUserInformation()
     cout << "Age: " << current_user.age << endl;
     cout << "Profession: " << current_user.profession << endl;
     cout << "Work experience: " << current_user.work_experience << endl; 
+    cout << "Calculated data: " << endl;
+    cout << "Social assistance: " << social_assistance << endl;
+    cout << "Tax: " << tax << endl;
 }
 void Citizen::Register()
 {
@@ -122,7 +137,7 @@ void Citizen::Register()
     cin >> current_user.work_experience;
 }
 
-int Student::CalculateSocialAssistance()
+void Student::CalculateSocialAssistance()
 {
     cout << "Enter your degree:\n 1. Associate degree  2. Bachelor`s degree   3. Master`s degree  4. Doctoral degree  5. Professional degree\n";
     int degree;
@@ -148,15 +163,19 @@ int Student::CalculateSocialAssistance()
         cout << "You have entered not correct option" << endl;
         break;
     }
-    cout << social_assistance << '$' << endl;
 }
+void Student::CalculateTaxes() {}
 
-int Employee::CalculateSocialAssistance()
+void Employee::CalculateTaxes()
 {
-
+    double income_tax = current_user.salary * 0.18;
+    double military_tax = current_user.salary * 0.15; 
+    tax = income_tax + military_tax;
 }
+void Employee::CalculateSocialAssistance() {}
 
-int Entrepreneur::CalculateSocialAssistance()
+void Entrepreneur::CalculateSocialAssistance() {}
+void Entrepreneur::CalculateTaxes()
 {
-
+    tax = current_user.salary * 0.1;
 }
