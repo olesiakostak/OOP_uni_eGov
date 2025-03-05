@@ -2,51 +2,64 @@
 #include <string>
 using namespace std;
 
-class Citizen
+class Person
 {
 protected:
-    string filename = "user_data.txt";
-    int social_assistance = 0;
-    int tax = 0;
+    string name;
+    string surname;
+    int age;
+public:
+    Person() {}
+    ~Person() {}
+};
+class TaxPayer
+{
+protected:
+    double tax = 0;
+    int salary;
+};
+class Citizen: public Person, public TaxPayer
+{
+protected:
+    double social_assistance = 0;
     struct User
     {
-        int age;
         int work_experience;
-        int salary;
-        string name;
-        string surname;
         string profession;
     };
     User current_user;
 
 public:
     Citizen() {}
-    void Register();
-    void ShowUserInformation();
-    void CalculateSocialAssistance() {};
-    void CalculateTaxes() {};
+    ~Citizen() {}
+    virtual void Register();
+    virtual void ShowUserInformation();
+    virtual void CalculateSocialAssistance() = 0;
+    virtual void CalculateTaxes() = 0;
 };
 
-class Student: public Citizen 
+class Student: public Citizen
 {
 public:
-    using Citizen::Citizen;
-    void CalculateSocialAssistance();
-    void CalculateTaxes();
+    Student() {}
+    ~Student() {}
+    void CalculateSocialAssistance() override;
+    void CalculateTaxes() override;
 };
-class Employee: public Citizen 
+class Employee: public Citizen
 {
 public:
-    using Citizen::Citizen;
-    void CalculateSocialAssistance();
-    void CalculateTaxes();
+    Employee() {}
+    ~Employee() {}
+    void CalculateSocialAssistance() override;
+    void CalculateTaxes() override;
 };
-class Entrepreneur: public Citizen 
+class Entrepreneur: public Citizen
 {
 public:
     using Citizen::Citizen;
-    void CalculateSocialAssistance();
-    void CalculateTaxes();
+    void CalculateSocialAssistance() override;
+    void CalculateTaxes() override;
 };
 
 
@@ -55,24 +68,29 @@ public:
 int main()
 {
     Citizen* user = nullptr;
+    int user_choice;
+
     cout << "You're welcome to our e-Government" << endl << endl;
     while (true)
     {
         cout << "Choose an option to continue (enter a number): " << endl;
         cout << "1. Register\n2. Calculate social assistance\n3. Calculate taxes\n4. Display information\n5. Exit \n"; 
-        int user_choice;
         cin >> user_choice;
+
         if (!user && user_choice != 1) 
         {
-            cout << endl << "You are not registered" << endl; 
+            cout << endl << "You are not registered" << endl;
             continue;
         }
         switch (user_choice)
         {
             case 1:
+                delete user;
+                user = nullptr;
                 cout << "Which category do you belong to (enter a number):\n1. Student. \n2. Employee. \n3. Enterpreneur. \n";
                 int user_category;
                 cin >> user_category;
+                
                 switch (user_category)
                 {
                     case 1:
@@ -86,7 +104,6 @@ int main()
                         break;
                     default:
                         cout << endl << "You have entered not correct data" << endl;
-                        delete user;
                         break;
                 }
                 if (user) user->Register();
@@ -113,26 +130,27 @@ int main()
 
 void Citizen::ShowUserInformation()
 {
-    cout << "Name and surname: " << current_user.name << " " << current_user.surname << endl;
-    cout << "Age: " << current_user.age << endl;
+    cout << "Name and surname: " << name << " " << surname << endl;
+    cout << "Age: " << age << endl;
     cout << "Profession: " << current_user.profession << endl;
+    cout << "Salary: " << salary << endl;
     cout << "Work experience: " << current_user.work_experience << endl; 
-    cout << "Calculated data: " << endl;
+    cout << "-----------Calculated data-----------" << endl;
     cout << "Social assistance: " << social_assistance << endl;
     cout << "Tax: " << tax << endl;
 }
 void Citizen::Register()
 {
     cout << "Enter your \nName: "; 
-    cin >> current_user.name;
+    cin >> name;
     cout << "Surname: ";
-    cin >> current_user.surname;
+    cin >> surname;
     cout << "Age: ";
-    cin >> current_user.age;
+    cin >> age;
     cout << "Profession: ";
     cin >> current_user.profession;
     cout << "Salary: ";
-    cin >> current_user.salary;
+    cin >> salary;
     cout << "Work experience: ";
     cin >> current_user.work_experience;
 }
@@ -168,8 +186,8 @@ void Student::CalculateTaxes() {}
 
 void Employee::CalculateTaxes()
 {
-    double income_tax = current_user.salary * 0.18;
-    double military_tax = current_user.salary * 0.15; 
+    double income_tax = salary * 0.18;
+    double military_tax = salary * 0.015; 
     tax = income_tax + military_tax;
 }
 void Employee::CalculateSocialAssistance() {}
@@ -177,5 +195,5 @@ void Employee::CalculateSocialAssistance() {}
 void Entrepreneur::CalculateSocialAssistance() {}
 void Entrepreneur::CalculateTaxes()
 {
-    tax = current_user.salary * 0.1;
+    tax = salary * 0.1;
 }
