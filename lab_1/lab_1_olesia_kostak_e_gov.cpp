@@ -5,9 +5,9 @@ using namespace std;
 class Person
 {
 protected:
+    int age;
     string name;
     string surname;
-    int age;
 public:
     Person() {}
     ~Person() {}
@@ -15,19 +15,20 @@ public:
 class TaxPayer
 {
 protected:
-    double tax = 0;
-    int salary;
+    struct Worker
+    {
+        double tax = 0;
+        int salary;
+        int work_experience;
+        string profession;    
+    };
+    Worker current_worker;
 };
 class Citizen: public Person, public TaxPayer
 {
 protected:
     double social_assistance = 0;
-    struct User
-    {
-        int work_experience;
-        string profession;
-    };
-    User current_user;
+    bool is_work;
 
 public:
     Citizen() {}
@@ -68,13 +69,13 @@ public:
 int main()
 {
     Citizen* user = nullptr;
-    int user_choice;
 
     cout << "You're welcome to our e-Government" << endl << endl;
     while (true)
     {
         cout << "Choose an option to continue (enter a number): " << endl;
         cout << "1. Register\n2. Calculate social assistance\n3. Calculate taxes\n4. Display information\n5. Exit \n"; 
+        int user_choice;
         cin >> user_choice;
 
         if (!user && user_choice != 1) 
@@ -132,12 +133,19 @@ void Citizen::ShowUserInformation()
 {
     cout << "Name and surname: " << name << " " << surname << endl;
     cout << "Age: " << age << endl;
-    cout << "Profession: " << current_user.profession << endl;
-    cout << "Salary: " << salary << endl;
-    cout << "Work experience: " << current_user.work_experience << endl; 
-    cout << "-----------Calculated data-----------" << endl;
     cout << "Social assistance: " << social_assistance << endl;
-    cout << "Tax: " << tax << endl;
+
+    if (is_work)
+    {
+        cout << "Profession: " << current_worker.profession << endl;
+        cout << "Salary: " << current_worker.salary << endl;
+        cout << "Work experience: " << current_worker.work_experience << endl; 
+        cout << "Tax: " << current_worker.tax << endl;
+    }
+    else
+    {
+        cout << "Work: unemployed" << endl;
+    }
 }
 void Citizen::Register()
 {
@@ -147,12 +155,20 @@ void Citizen::Register()
     cin >> surname;
     cout << "Age: ";
     cin >> age;
-    cout << "Profession: ";
-    cin >> current_user.profession;
-    cout << "Salary: ";
-    cin >> salary;
-    cout << "Work experience: ";
-    cin >> current_user.work_experience;
+    cout << "Do you have work? (enter y/n) ";
+    char current_choice;
+    cin >> current_choice;
+    if (current_choice == 'y') is_work = true;
+    else is_work = false;
+    if (is_work)
+    {
+        cout << "Profession: ";
+        cin >> current_worker.profession;
+        cout << "Salary: ";
+        cin >> current_worker.salary;
+        cout << "Work experience: ";
+        cin >> current_worker.work_experience;
+    }
 }
 
 void Student::CalculateSocialAssistance()
@@ -182,18 +198,37 @@ void Student::CalculateSocialAssistance()
         break;
     }
 }
-void Student::CalculateTaxes() {}
+void Student::CalculateTaxes() 
+{
+    cout << "You cannot calculate tax because you're category doesn't allow this" << endl;
+}
 
 void Employee::CalculateTaxes()
 {
-    double income_tax = salary * 0.18;
-    double military_tax = salary * 0.015; 
-    tax = income_tax + military_tax;
+    if (!is_work) 
+    {
+        cout << "Your're unemplyed so you cannot calculate tax" << endl; 
+        return;
+    }
+    double income_tax = current_worker.salary * 0.18;
+    double military_tax = current_worker.salary * 0.015; 
+    current_worker.tax = income_tax + military_tax;
 }
-void Employee::CalculateSocialAssistance() {}
+void Employee::CalculateSocialAssistance() 
+{
+    cout << "You cannot calculate social assistance because you're category doesn't allow this" << endl;
+}
 
-void Entrepreneur::CalculateSocialAssistance() {}
+void Entrepreneur::CalculateSocialAssistance() 
+{
+    cout << "You cannot calculate social assistance because you're category doesn't allow this" << endl;
+}
 void Entrepreneur::CalculateTaxes()
 {
-    tax = salary * 0.1;
+    if (!is_work) 
+    {
+        cout << "Your're unemplyed so you cannot calculate tax" << endl; 
+        return;
+    }
+    current_worker.tax = current_worker.salary * 0.1;
 }
