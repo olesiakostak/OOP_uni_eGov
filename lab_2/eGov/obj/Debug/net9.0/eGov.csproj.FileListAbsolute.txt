@@ -1,0 +1,15 @@
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\bin\Debug\net9.0\eGov.exe
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\bin\Debug\net9.0\eGov.deps.json
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\bin\Debug\net9.0\eGov.runtimeconfig.json
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\bin\Debug\net9.0\eGov.dll
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\bin\Debug\net9.0\eGov.pdb
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.GeneratedMSBuildEditorConfig.editorconfig
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.AssemblyInfoInputs.cache
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.AssemblyInfo.cs
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.csproj.CoreCompileInputs.cache
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.sourcelink.json
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.dll
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\refint\eGov.dll
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.pdb
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\eGov.genruntimeconfig.cache
+D:\F_for_F\Uni\OOP_uni\lab2\eGov\obj\Debug\net9.0\ref\eGov.dll
