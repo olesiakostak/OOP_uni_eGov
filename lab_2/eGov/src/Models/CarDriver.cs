@@ -1,4 +1,4 @@
-using eGov.Interfaces
+using eGov.Interfaces;
 using System;
 
 namespace eGov.Models
