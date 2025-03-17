@@ -19,13 +19,13 @@ namespace eGov.Models
             Console.Write("Enter age: ");
             age = int.Parse(Console.ReadLine());
             Console.WriteLine("Are you tax payer? (y/n): ");
-            char user_input = char.ToLower(Console.ReadKey().KeyChar);
+            char user_input = char.ToLower(Console.ReadKey(true).KeyChar);
             if (user_input == 'y')
             {
                 tax_payer = new TaxPayer();
             }
             Console.WriteLine("Are you car driver? (y/n): ");
-            user_input = char.ToLower(Console.ReadKey().KeyChar);
+            user_input = char.ToLower(Console.ReadKey(true).KeyChar);
             if (user_input == 'y')
             {
                 car_driver = new CarDriver();
