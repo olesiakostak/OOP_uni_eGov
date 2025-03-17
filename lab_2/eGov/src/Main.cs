@@ -10,15 +10,17 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Choose an option to continue:\n 1. Register \n 2. Show info \n 3. Exit");
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            Console.WriteLine("Choose an option to continue:\n 1. Register \n 2. Show general info");
+            Console.WriteLine(" 3. Get info about the place of residence \n 4. Exit");
+            char user_input = char.ToLower(Console.ReadKey(true).KeyChar); 
 
-            switch (keyInfo.KeyChar)
+            switch (user_input)
             {
                 case '1':
                     user1 = new Citizen();
                     user1.InputInfo();
                     break;
+
                 case '2':
                     if (user1 != null)
                         user1.ShowInfo();
@@ -29,12 +31,30 @@ class Program
                             Console.ResetColor();
                         }
                     break;
+                    
                 case '3':
+                    if (user1 == null)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You are not registered");
+                        Console.ResetColor();
+                    }
+                    else if (user1.GetAddress() == null)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You have not entered a place of recidence. Do you want to enter? (y/n)");
+                        char _user_input = char.ToLower(Console.ReadKey(true).KeyChar);
+                        if (_user_input == 'y')
+                        {
+                            user1.InputAddress();
+                        }
+                        Console.ResetColor();
+                    }
                     break;
                 default:
                     break;
             }
-            if (keyInfo.KeyChar == '3') break;
+            if (user_input == '4') break;
         }
     }
 }
