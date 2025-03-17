@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using eGov.Interfaces;
 
 namespace eGov.Models
@@ -34,6 +35,8 @@ namespace eGov.Models
 
         public void ShowInfo()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
             Console.WriteLine($"Name: {name}");
             
             Console.Write("Tax payer: ");
@@ -55,6 +58,37 @@ namespace eGov.Models
             {
                 Console.WriteLine("not a car driver");
             }
+
+            Console.ResetColor();
+        }
+
+        public class Adress
+        {
+            private string country { get; set; }
+            private string city { get; set; }
+            private string street {get; set; }
+
+            public void InputAdress()
+            {
+                Console.Write("Input country: ");
+                country = Console.ReadLine();
+                Console.Write("Input city: ");
+                city = Console.ReadLine();
+                Console.Write("Input street: ");
+                street = Console.ReadLine();
+            }
+
+            public void ShowAdress()
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+
+                Console.WriteLine($"Coutry: {country}");
+                Console.WriteLine($"City: {city}");
+                Console.WriteLine($"Street: {street}");
+
+                Console.ResetColor();                
+            }
+
         }
     }
 }
