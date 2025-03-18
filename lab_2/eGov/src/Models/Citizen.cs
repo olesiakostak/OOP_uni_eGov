@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Dynamic;
 using System.Security.AccessControl;
 using eGov.Interfaces;
+using eGov.Services;
 
 namespace eGov.Models
 {
@@ -12,7 +13,7 @@ namespace eGov.Models
         private int age { get; set; }
         private ITaxPayer? tax_payer { get; set; }
         private IDriver? car_driver { get; set; }
-        private Adress? home_address { get; set; }
+        private Address? home_address { get; set; }
 
         public Citizen() 
         {
@@ -22,10 +23,30 @@ namespace eGov.Models
         public void InputInfo ()
         {
             Console.Write("Enter full name: ");
-            name = Console.ReadLine();
-
+            while (true)
+            {
+                name = Console.ReadLine();
+                if (!Vadidator.IfValidName(name))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You have entered not correct name. Please try again");
+                    Console.ResetColor();
+                }
+                else break;
+            }
+            
             Console.Write("Enter age: ");
-            age = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                age = int.Parse(Console.ReadLine());;
+                if (!Vadidator.IfValidAge(age))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You have entered not correct age. Please try again");
+                    Console.ResetColor();
+                }
+                else break;
+            }
 
             Console.WriteLine("Are you tax payer? (y/n): ");
             char user_input = char.ToLower(Console.ReadKey(true).KeyChar);
@@ -54,6 +75,8 @@ namespace eGov.Models
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine($"Name: {name}");
+
+            Console.WriteLine($"Age: {age}");
             
             Console.Write("Tax payer: ");
             if (tax_payer != null)
@@ -78,18 +101,18 @@ namespace eGov.Models
             Console.ResetColor();
         }
 
-        public Adress? GetAddress()
+        public Address? GetAddress()
         {
             return home_address;
         }
 
         public void InputAddress()
         {
-            Adress home_adress  = new Adress();
-            home_adress.InputAddress();
+            home_address  = new Address();
+            home_address.InputAddress();
         }
 
-        public class Adress
+        public class Address
         {
             private string country { get; set; }
             private string city { get; set; }

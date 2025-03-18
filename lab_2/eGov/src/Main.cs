@@ -43,12 +43,16 @@ class Program
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("You have not entered a place of recidence. Do you want to enter? (y/n)");
+                        Console.ResetColor();
                         char _user_input = char.ToLower(Console.ReadKey(true).KeyChar);
                         if (_user_input == 'y')
                         {
                             user1.InputAddress();
                         }
-                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        user1.GetAddress().ShowAddress();
                     }
                     break;
                 default:
