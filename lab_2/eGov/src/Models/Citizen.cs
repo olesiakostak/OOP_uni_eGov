@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Dynamic;
 using System.Security.AccessControl;
 using eGov.Interfaces;
+using eGov.Services;
 
 namespace eGov.Models
 {
@@ -22,10 +23,30 @@ namespace eGov.Models
         public void InputInfo ()
         {
             Console.Write("Enter full name: ");
-            name = Console.ReadLine();
-
+            while (true)
+            {
+                name = Console.ReadLine();
+                if (!Vadidator.IfValidName(name))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You have entered not correct name. Please try again");
+                    Console.ResetColor();
+                }
+                else break;
+            }
+            
             Console.Write("Enter age: ");
-            age = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                age = int.Parse(Console.ReadLine());;
+                if (!Vadidator.IfValidAge(age))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You have entered not correct age. Please try again");
+                    Console.ResetColor();
+                }
+                else break;
+            }
 
             Console.WriteLine("Are you tax payer? (y/n): ");
             char user_input = char.ToLower(Console.ReadKey(true).KeyChar);
@@ -54,6 +75,8 @@ namespace eGov.Models
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine($"Name: {name}");
+
+            Console.WriteLine($"Age: {age}");
             
             Console.Write("Tax payer: ");
             if (tax_payer != null)
