@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eGov")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbd78e39f631fa1bf2629c698f8d2af8c0f829ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+618684ce4b9bd16821526508c5f37b57e77bd296")]
 [assembly: System.Reflection.AssemblyProductAttribute("eGov")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eGov")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -12,7 +12,7 @@ namespace eGov.Models
         private int age { get; set; }
         private ITaxPayer? tax_payer { get; set; }
         private IDriver? car_driver { get; set; }
-        private Adress? home_address { get; set; }
+        private Address? home_address { get; set; }
 
         public Citizen() 
         {
@@ -78,18 +78,18 @@ namespace eGov.Models
             Console.ResetColor();
         }
 
-        public Adress? GetAddress()
+        public Address? GetAddress()
         {
             return home_address;
         }
 
         public void InputAddress()
         {
-            Adress home_adress  = new Adress();
-            home_adress.InputAddress();
+            home_address  = new Address();
+            home_address.InputAddress();
         }
 
-        public class Adress
+        public class Address
         {
             private string country { get; set; }
             private string city { get; set; }
