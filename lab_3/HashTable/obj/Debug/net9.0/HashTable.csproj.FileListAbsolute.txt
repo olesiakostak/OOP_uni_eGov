@@ -1,0 +1,12 @@
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\bin\Debug\net9.0\HashTable.deps.json
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\bin\Debug\net9.0\HashTable.dll
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\bin\Debug\net9.0\HashTable.pdb
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.GeneratedMSBuildEditorConfig.editorconfig
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.AssemblyInfoInputs.cache
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.AssemblyInfo.cs
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.csproj.CoreCompileInputs.cache
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.sourcelink.json
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.dll
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\refint\HashTable.dll
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\HashTable.pdb
+D:\F_for_F\Uni\OOP_uni\lab_3\HashTable\obj\Debug\net9.0\ref\HashTable.dll

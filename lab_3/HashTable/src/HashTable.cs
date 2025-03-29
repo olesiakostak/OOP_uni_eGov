@@ -3,24 +3,70 @@ namespace HashTable.src
     class HashTable<K, V>
     {
         private int hash_size { set; get; }
-        HashNode<K, V>? []hash_table;
+        private LinkedList<HashNode<K, V>>[] hash_table;
 
         public HashTable(int _hash_size)
         {
-            hash_size = _hash_size;
-            hash_table = new HashNode<K, V>[hash_size];
-        }
-        public int Hash(string keys)
-        {
-            int key = 0;
-            foreach (var item in keys)
+            hash_size = _hash_size; 
+            hash_table = new LinkedList<HashNode<K, V>>[hash_size];
+            for (int i = 0; i < hash_size; i++)
             {
-                key += item;
+                hash_table[i] = new LinkedList<HashNode<K, V>>();
             }
-            key %= hash_size;
-            return key;
         }
         
+        public int Hash(K key)
+        {
+            return Math.Abs(key.GetHashCode()) % hash_size;
+        }
+
+        public void Insert(K key, V value)
+        {
+            int index = Hash(key);
+            var bucket = hash_table[index];
+
+            foreach (var node in bucket)
+            {
+                if (node.Key.Equals(key))
+                {
+                    Console.WriteLine("This key already has value");
+                    return;
+                }
+            }
+
+            bucket.AddLast(new HashNode<K, V>(key, value)); 
+        }
+
+        public V GetValue(K key)
+        {
+            int index = Hash(key);
+            var bucket = hash_table[index];
+
+            foreach (var node in bucket)
+            {
+                if (node.Key.Equals(key))
+                {
+                    return node.Value;
+                }
+            }
+            throw new KeyNotFoundException("Value with the specified key wasn't found.");            
+        }
+        
+        public void RewriteValue(K key, V value)
+        {
+            int index = Hash(key);
+            var bucket = hash_table[index];
+
+            foreach (var node in bucket)
+            {
+                if (node.Key.Equals(key))
+                {
+                    node.Value = value;
+                    return;
+                }
+            }
+            throw new KeyNotFoundException("Value with the specified key wasn't found.");
+        }
         
     }
 }
