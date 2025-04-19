@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "Sb7h2/lRpIJHiUbuGuX/Bcycclt+Q3w24Bp4Ljqs2gs=",
+  "Source": "eGovWebAPI",
+  "BasePath": "_content/eGovWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
