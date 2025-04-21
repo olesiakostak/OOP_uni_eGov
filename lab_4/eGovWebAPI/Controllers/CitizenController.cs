@@ -1,37 +1,41 @@
-using eGovWebAPI.Interfaces;
-using eGovWebAPI.Models;
+using eGovWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eGovWebAPI.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class CitizenController : ControllerBase
+namespace eGovWebAPI.Controllers
 {
-    private readonly ITaxPayer TaxPayer;
-    private readonly IDriver Driver;
-    private readonly IAddress Address;
-
-    public CitizenController(ITaxPayer _tax_payer, IDriver _driver, IAddress _address)
+    [ApiController]
+    [Route("citizen")]
+    public class CitizenController : ControllerBase
     {
-        TaxPayer = _tax_payer;
-        Driver = _driver;
-        Address = _address;
-    }
+        private readonly CitizenService Citizen;
 
-    [HttpPost("register")]
-    public IActionResult RegisterCitizen ([FromQuery] string name, [FromQuery] int age)
-    {
-        var citizen = new Citizen(name, age, TaxPayer, Driver, Address);
-        return Ok($"Citizen {name} registered with age {age}.");
-    }
+        public CitizenController(CitizenService _citizen)
+        {
+            Citizen = _citizen;
+        }
 
-    // [HttpPost ("taxpayer")]
-    // public IActionResult 
+        [HttpPost("register")]
+        public IActionResult RegisterCitizen (string name, int age, bool isTaxPayer, bool isDriver, bool hasAddress, string? country = null,
+                string? city = null, string? street = null)
+        {
+            var message = Citizen.RegisterCitizen(name, age, isTaxPayer, isDriver, hasAddress, country, city, street);
+            return Ok(message);
+        }
 
-    [HttpGet]
-    public IActionResult getCitizen()
-    {
-        return Ok("Citizen inf processed");
+        [HttpGet ("{name}")]
+        public IActionResult ShowCitizenInfo(string name)
+        {
+            var info = Citizen.ShowInfo(name);
+            return Ok(info);
+        }
+
+        // [HttpPost ("taxpayer")]
+        // public IActionResult 
+
+        [HttpGet]
+        public IActionResult getCitizen()
+        {
+            return Ok("Citizen inf processed");
+        }
     }
 }

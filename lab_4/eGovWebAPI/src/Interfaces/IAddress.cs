@@ -4,8 +4,8 @@ namespace eGovWebAPI.Interfaces
 {
     public interface IAddress
     {
-        public void InputAddress();
-        public void ShowAddress();
-        public Address? GetAddress();
+        string Country { get; }
+        string City { get; }
+        string Street { get; }
     }
 }

@@ -4,34 +4,15 @@ namespace eGovWebAPI.Models
 {
     public class Address: IAddress
     {
-        private string Country { get; set; }
-        private string City { get; set; }
-        private string Street {get; set; }
+        public string Country { get; private set; }
+        public string City { get; private set;}
+        public string Street {get; private set;}
 
-        public void InputAddress()
+        public Address(string _country, string _city, string _street)
         {
-            // Console.Write("Input country: ");
-            // country = Console.ReadLine();
-            // Console.Write("Input city: ");
-            // city = Console.ReadLine();
-            // Console.Write("Input street: ");
-            // street = Console.ReadLine();
+            Country = _country;
+            City = _city;
+            Street = _street;
         }
-
-        public void ShowAddress()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-
-            // Console.WriteLine($"Coutry: {country}");
-            // Console.WriteLine($"City: {city}");
-            // Console.WriteLine($"Street: {street}");
-
-            // Console.ResetColor();  
-        }  
-
-         public Address? GetAddress()
-         {
-            return this;
-         }
     }
 }
