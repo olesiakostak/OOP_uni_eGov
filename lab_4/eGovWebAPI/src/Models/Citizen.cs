@@ -20,6 +20,11 @@ namespace eGovWebAPI.Models
             Driver = _driver;
         }
 
+        public void SetAddress(IAddress _address)
+        {
+            Address = _address;
+        }
+
         public bool IsTaxPayer()
         {
             return this.TaxPayer != null;
@@ -34,5 +39,6 @@ namespace eGovWebAPI.Models
         {
             return this.Address != null;
         }
+
     }
 }

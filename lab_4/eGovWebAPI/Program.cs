@@ -11,6 +11,7 @@ builder.Services.AddScoped<ITaxPayer, TaxPayer>();
 builder.Services.AddScoped<IDriver, Driver>();
 builder.Services.AddScoped<IAddressFactory, AddressFactory>();
 builder.Services.AddScoped<CitizenService>();
+builder.Services.AddScoped<AddressService>();
 
 var app = builder.Build();
 

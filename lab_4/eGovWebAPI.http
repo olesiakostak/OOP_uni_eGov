@@ -15,3 +15,7 @@ Accept: application/json
 ### Show Citizen Address
 GET http://localhost:5184/citizen/John%20Doe/address
 Accept: application/json
+
+### Change Citizen Address
+POST http://localhost:5184/citizen/John%20Doe/changeAddress?country=Canada&city=Toronto&street=Queen%20St
+Accept: application/json
