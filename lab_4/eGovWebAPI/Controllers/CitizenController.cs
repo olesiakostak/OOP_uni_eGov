@@ -7,33 +7,30 @@ namespace eGovWebAPI.Controllers
     [Route("citizen")]
     public class CitizenController : ControllerBase
     {
-        private readonly CitizenService Citizen;
+        private readonly CitizenService _citizenService;
 
-        public CitizenController(CitizenService _citizen)
+        public CitizenController(CitizenService citizenService)
         {
-            Citizen = _citizen;
+            _citizenService = citizenService;
         }
 
         [HttpPost("register")]
-        public IActionResult RegisterCitizen (string name, int age, bool isTaxPayer, bool isDriver, bool hasAddress, string? country = null,
+        public IActionResult RegisterCitizen(string name, int age, bool isTaxPayer, bool isDriver, bool hasAddress, string? country = null,
                 string? city = null, string? street = null)
         {
-            var message = Citizen.RegisterCitizen(name, age, isTaxPayer, isDriver, hasAddress, country, city, street);
+            var message = _citizenService.RegisterCitizen(name, age, isTaxPayer, isDriver, hasAddress, country, city, street);
             return Ok(message);
         }
 
-        [HttpGet ("{name}")]
+        [HttpGet("{name}")]
         public IActionResult ShowCitizenInfo(string name)
         {
-            var info = Citizen.ShowInfo(name);
+            var info = _citizenService.ShowInfo(name);
             return Ok(info);
         }
 
-        // [HttpPost ("taxpayer")]
-        // public IActionResult 
-
         [HttpGet]
-        public IActionResult getCitizen()
+        public IActionResult GetCitizen()
         {
             return Ok("Citizen inf processed");
         }

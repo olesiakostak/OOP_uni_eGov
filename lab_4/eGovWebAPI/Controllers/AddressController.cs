@@ -6,43 +6,27 @@ namespace eGovWebAPI.Controllers
 {
     [ApiController]
     [Route("citizen")]
-
-    public class AddressController: ControllerBase
+    public class AddressController : ControllerBase
     {
-        private readonly CitizenService Citizens;
-        private readonly AddressService AddressService;
+        private readonly CitizenService _citizens;
+        private readonly AddressService _addressService;
 
-        public AddressController(CitizenService _citizens, AddressService _addressService)
+        public AddressController(CitizenService citizens, AddressService addressService)
         {
-            Citizens = _citizens;
-            AddressService = _addressService;
+            _citizens = citizens;
+            _addressService = addressService;
         }
 
-        // [HttpGet ("{name}/address")]
-        // public IActionResult GetCitizenAddress(string name)
-        // {
-        //     var citizen = Citizens.GetCitizen(name);
-        //     if (citizen == null || citizen.Address == null)
-        //     {
-        //         return NotFound("Citizen or address was not found");
-        //     }
-        //     return Ok(new 
-        //     {country = citizen.Address.Country,
-        //     city = citizen.Address.City,
-        //     street = citizen.Address.Street});
-        // }
-
-        [HttpGet ("{name}/address")]
+        [HttpGet("{name}/address")]
         public IActionResult GetCitizenAddress(string name)
         {
-            return Ok(AddressService.GetAddress(name));
+            return Ok(_addressService.GetAddress(name));
         }
 
-        [HttpPost ("{name}/changeAddress")]
+        [HttpPost("{name}/changeAddress")]
         public IActionResult ChangeCitizenAddress(string name, string country, string city, string street)
         {
-            return Ok(AddressService.ChangeAddress(name, country, city, street));
+            return Ok(_addressService.ChangeAddress(name, country, city, street));
         }
     }
-    
 }
