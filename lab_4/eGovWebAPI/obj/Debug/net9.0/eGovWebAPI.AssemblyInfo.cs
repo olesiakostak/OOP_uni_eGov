@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eGovWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f778b8dd3e902af418201f4b55516b5bbcadf613")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a2eeae9edfbf328667fb4f5b260002f1e090bc4")]
 [assembly: System.Reflection.AssemblyProductAttribute("eGovWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eGovWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

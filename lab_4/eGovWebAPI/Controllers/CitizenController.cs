@@ -1,4 +1,5 @@
 using eGovWebAPI.Services;
+using eGovWebAPI.DTOs.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGovWebAPI.Controllers
@@ -25,8 +26,12 @@ namespace eGovWebAPI.Controllers
         [HttpGet("{name}")]
         public IActionResult ShowCitizenInfo(string name)
         {
-            var info = _citizenService.ShowInfo(name);
-            return Ok(info);
+            var citizen = _citizenService.GetCitizen(name);
+            if (citizen == null)
+            {
+                return NotFound("Citizen was not found");
+            }
+            return Ok(citizen.ToCitizenDto());
         }
 
         [HttpGet]

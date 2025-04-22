@@ -1,13 +1,18 @@
 using eGovWebAPI.DTOs;
+using eGovWebAPI.Interfaces;
 
 namespace eGovWebAPI.DTOs.Mappers
 {
     public static class AddressMapper
     {
-        public static AddressDto MapToDto(/* parameters */)
+        public static AddressDto ToAddressDto(this IAddress addressModel)
         {
-            // // Implementation here
-            // return new AddressDto();
+            return new AddressDto
+            {
+                Country = addressModel.Country,
+                City = addressModel.City,
+                Street = addressModel.Street
+            };
         }
     }
 

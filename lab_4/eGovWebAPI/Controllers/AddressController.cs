@@ -1,5 +1,6 @@
 using eGovWebAPI.Models;
 using eGovWebAPI.Services;
+using eGovWebAPI.DTOs.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGovWebAPI.Controllers
@@ -20,7 +21,12 @@ namespace eGovWebAPI.Controllers
         [HttpGet("{name}/address")]
         public IActionResult GetCitizenAddress(string name)
         {
-            return Ok(_addressService.GetAddress(name));
+            var citizen = _citizens.GetCitizen(name);
+            if (citizen == null || citizen.Address == null)
+            {
+                return NotFound("Citizen or address was not found");
+            }
+            return Ok(citizen.Address.ToAddressDto());
         }
 
         [HttpPost("{name}/changeAddress")]
