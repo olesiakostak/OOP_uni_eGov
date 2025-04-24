@@ -1,0 +1,21 @@
+@host = http://localhost:5184
+
+### Get Citizen
+GET http://localhost:5184/citizen
+Accept: application/json
+
+### Register Citizen
+POST http://localhost:5184/citizen/register?name=John%20Doe&age=30&isTaxPayer=true&isDriver=true&hasAddress=true&country=USA&city=New%20York&street=Main%20St
+Accept: application/json
+### Show Citizen Info
+GET http://localhost:5184/citizen/John%20Doe
+Accept: application/json
+
+### Show Citizen Address
+GET http://localhost:5184/citizen/John%20Doe/address
+Accept: application/json
+
+### Change Citizen Address
+POST http://localhost:5184/citizen/John%20Doe/changeAddress?country=Canada&city=Toronto&street=Queen%20St
+Accept: application/json
+
