@@ -31,3 +31,5 @@ D:\F_for_F\Uni\OOP_uni\lab_4\eGovWebAPI\bin\Debug\net9.0\Microsoft.Extensions.De
 D:\F_for_F\Uni\OOP_uni\lab_4\eGovWebAPI\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\F_for_F\Uni\OOP_uni\lab_4\eGovWebAPI\obj\Debug\net9.0\eGovWebAPI.csproj.AssemblyReference.cache
 D:\F_for_F\Uni\OOP_uni\lab_4\eGovWebAPI\obj\Debug\net9.0\eGovWebAPI.csproj.Up2Date
+D:\F_for_F\Uni\OOP_uni\lab_4\eGovWebAPI\bin\Debug\net9.0\Castle.Core.dll
+D:\F_for_F\Uni\OOP_uni\lab_4\eGovWebAPI\bin\Debug\net9.0\Moq.dll

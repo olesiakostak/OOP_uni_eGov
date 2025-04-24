@@ -5,20 +5,23 @@ namespace eGovWebAPI.Services
 {
     public class AddressService
     {
-        private readonly IAddressFactory AddressFactory;
-        private readonly CitizenService Citizens;
-        public AddressService (IAddressFactory _addressFactory, CitizenService _citizens)
+        private readonly IAddressFactory _addressFactory;
+        private readonly CitizenService _citizenService;
+
+        public AddressService(IAddressFactory addressFactory, CitizenService citizenService)
         {
-            AddressFactory = _addressFactory;
-            Citizens = _citizens;
+            _addressFactory = addressFactory;
+            _citizenService = citizenService;
         }
-        public IAddress CreateAddress(string _country, string _city, string _street)
+
+        public IAddress CreateAddress(string country, string city, string street)
         {
-            return AddressFactory.Create(_country, _city, _street);
+            return _addressFactory.Create(country, city, street);
         }
-        public IAddress GetAddress (string name)
+
+        public IAddress GetAddress(string name)
         {
-            var citizen = Citizens.GetCitizen(name);
+            var citizen = _citizenService.GetCitizen(name);
             if (citizen == null || citizen.Address == null)
             {
                 throw new InvalidOperationException("Citizen or address was not found.");
@@ -26,16 +29,16 @@ namespace eGovWebAPI.Services
             return citizen.Address;
         }
 
-        public string ChangeAddress(string _name, string _country, string _city, string _street)
+        public string ChangeAddress(string name, string country, string city, string street)
         {
-            var citizen = Citizens.GetCitizen(_name);
+            var citizen = _citizenService.GetCitizen(name);
             if (citizen == null || citizen.Address == null)
             {
                 return "Citizen or address was not found";
             }
-            var newAddress = AddressFactory.Create(_country, _city, _street);
+            var newAddress = _addressFactory.Create(country, city, street);
             citizen.SetAddress(newAddress);
-            
+
             return "Address was changed successfully.";
         }
     }

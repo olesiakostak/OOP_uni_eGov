@@ -5,57 +5,56 @@ namespace eGovWebAPI.Services
 {
     public class CitizenService
     {
-        private static readonly Dictionary<string, Citizen> Citizens = new();
-        private readonly ITaxPayer TaxPayer;
-        private readonly IDriver Driver;
-        private readonly IAddressFactory AddressFactory;
+        private static readonly Dictionary<string, Citizen> _citizens = new();
+        private readonly ITaxPayer _taxPayer;
+        private readonly IDriver _driver;
+        private readonly IAddressFactory _addressFactory;
 
-
-        public CitizenService (ITaxPayer _taxPayer, IDriver _driver, IAddressFactory _addressFactory)
+        public CitizenService(ITaxPayer taxPayer, IDriver driver, IAddressFactory addressFactory)
         {
-            TaxPayer = _taxPayer;
-            Driver = _driver;
-            AddressFactory = _addressFactory;
+            _taxPayer = taxPayer;
+            _driver = driver;
+            _addressFactory = addressFactory;
         }
 
-        public string RegisterCitizen  (string _name, 
-                                        int _age, 
-                                        bool _isTaxPayer, 
-                                        bool _isDriver, 
-                                        bool _hasAddress,
-                                        string? _country = null, 
-                                        string? _city = null, 
-                                        string? _street = null)
+        public string RegisterCitizen(string name, 
+                                      int age, 
+                                      bool isTaxPayer, 
+                                      bool isDriver, 
+                                      bool hasAddress,
+                                      string? country = null, 
+                                      string? city = null, 
+                                      string? street = null)
         {
-            if (Citizens.ContainsKey(_name))
+            if (_citizens.ContainsKey(name))
             {
-                return $"Citizen {_name} is already registered";
+                return $"Citizen {name} is already registered";
             }
 
-            var taxPayer = _isTaxPayer ? TaxPayer: null;
-            var driver = _isDriver ? Driver: null;
+            var taxPayer = isTaxPayer ? _taxPayer : null;
+            var driver = isDriver ? _driver : null;
             IAddress? address = null;
 
-            if (_hasAddress && !string.IsNullOrWhiteSpace(_country) && !string.IsNullOrWhiteSpace(_city) && !string.IsNullOrWhiteSpace(_street))
+            if (hasAddress && !string.IsNullOrWhiteSpace(country) && !string.IsNullOrWhiteSpace(city) && !string.IsNullOrWhiteSpace(street))
             {
-                address = AddressFactory.Create(_country, _city, _street);
+                address = _addressFactory.Create(country, city, street);
             }
 
-            var citizen = new Citizen(_name, _age, taxPayer, driver, address);
+            var citizen = new Citizen(name, age, taxPayer, driver, address);
 
-            Citizens.Add(_name, citizen);
+            _citizens.Add(name, citizen);
 
-            return $"Citizen {_name} was successfully registered!";
+            return $"Citizen {name} was successfully registered!";
         }
 
-        public Citizen? GetCitizen(string _name)
+        public Citizen? GetCitizen(string name)
         {
-            return Citizens.TryGetValue(_name, out var citizen) ? citizen : null;
+            return _citizens.TryGetValue(name, out var citizen) ? citizen : null;
         }
 
-        public string ShowInfo(string _name)
+        public string ShowInfo(string name)
         {
-            var citizen = GetCitizen(_name);
+            var citizen = GetCitizen(name);
 
             if (citizen == null)
             {

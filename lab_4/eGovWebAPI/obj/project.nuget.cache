@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "J2MtXOQmSt0=",
+  "dgSpecHash": "FM+TkZKdEj4=",
   "success": true,
   "projectFilePath": "D:\\F_for_F\\Uni\\OOP_uni\\lab_4\\eGovWebAPI\\eGovWebAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\olesi\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\olesi\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.4\\microsoft.extensions.dependencyinjection.9.0.4.nupkg.sha512",
-    "C:\\Users\\olesi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.4\\microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512"
+    "C:\\Users\\olesi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.4\\microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512",
+    "C:\\Users\\olesi\\.nuget\\packages\\moq\\4.20.72\\moq.4.20.72.nupkg.sha512",
+    "C:\\Users\\olesi\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
