@@ -240,11 +240,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\F_for_F\\Uni\\OOP_uni\\lab_4\\eGovWebAPI\\eGovWebAPI.csproj",
+      "projectUniqueName": "D:\\F_for_F\\Uni\\OOP_uni\\lab_5\\eGovWebAPI\\eGovWebAPI.csproj",
       "projectName": "eGovWebAPI",
-      "projectPath": "D:\\F_for_F\\Uni\\OOP_uni\\lab_4\\eGovWebAPI\\eGovWebAPI.csproj",
+      "projectPath": "D:\\F_for_F\\Uni\\OOP_uni\\lab_5\\eGovWebAPI\\eGovWebAPI.csproj",
       "packagesPath": "C:\\Users\\olesi\\.nuget\\packages\\",
-      "outputPath": "D:\\F_for_F\\Uni\\OOP_uni\\lab_4\\eGovWebAPI\\obj\\",
+      "outputPath": "D:\\F_for_F\\Uni\\OOP_uni\\lab_5\\eGovWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -7,5 +7,6 @@ namespace eGovWebAPI.Interfaces
         IAddress CreateAddress (string _country, string _city, string _street);
         IAddress GetAddress (string _name);
         string ChangeAddress(string _name, string _country, string _city, string _street);
+        public string ShowInfo(string name);
     }
 }

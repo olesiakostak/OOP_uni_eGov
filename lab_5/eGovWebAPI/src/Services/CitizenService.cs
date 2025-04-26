@@ -3,7 +3,7 @@ using eGovWebAPI.Interfaces;
 
 namespace eGovWebAPI.Services
 {
-    public class CitizenService
+    public class CitizenService: ICitizenService
     {
         private static readonly Dictionary<string, Citizen> _citizens = new();
         private readonly ITaxPayer _taxPayer;
@@ -17,15 +17,8 @@ namespace eGovWebAPI.Services
             _addressFactory = addressFactory;
         }
 
-        public string RegisterCitizen(string name, 
-                                      int age, 
-                                      bool isTaxPayer, 
-                                      bool isDriver, 
-                                      bool hasAddress,
-                                      string? country = null, 
-                                      string? city = null, 
-                                      string? street = null)
-        {
+        public string RegisterCitizen(string name, int age, bool isTaxPayer, bool isDriver, bool hasAddress, string? country = null, string? city = null, string? street = null)
+        {   
             if (_citizens.ContainsKey(name))
             {
                 return $"Citizen {name} is already registered";

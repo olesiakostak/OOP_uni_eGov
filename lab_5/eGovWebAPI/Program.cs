@@ -12,6 +12,12 @@ builder.Services.AddScoped<IDriver, Driver>();
 builder.Services.AddScoped<IAddressFactory, AddressFactory>();
 builder.Services.AddScoped<CitizenService>();
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<ICitizenService>(provider =>
+    new LoggingCitizenService(
+        provider.GetRequiredService<CitizenService>(),
+        provider.GetRequiredService<ILogger<LoggingCitizenService>>()
+    )
+);
 
 var app = builder.Build();
 

@@ -1,6 +1,7 @@
 using eGovWebAPI.Services;
 using eGovWebAPI.DTOs.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using eGovWebAPI.Interfaces;
 
 namespace eGovWebAPI.Controllers
 {
@@ -8,9 +9,9 @@ namespace eGovWebAPI.Controllers
     [Route("citizen")]
     public class CitizenController : ControllerBase
     {
-        private readonly CitizenService _citizenService;
+        private readonly ICitizenService _citizenService;
 
-        public CitizenController(CitizenService citizenService)
+        public CitizenController(ICitizenService citizenService)
         {
             _citizenService = citizenService;
         }
@@ -19,7 +20,7 @@ namespace eGovWebAPI.Controllers
         public IActionResult RegisterCitizen(string name, int age, bool isTaxPayer, bool isDriver, bool hasAddress, string? country = null,
                 string? city = null, string? street = null)
         {
-            var message = _citizenService.RegisterCitizen(name, age, isTaxPayer, isDriver, hasAddress, country, city, street);
+            var message = _citizenService.RegisterCitizen(name, age, isTaxPayer, isDriver, hasAddress, country ?? "Unknown", city ?? "Unknown", street ?? "Unknown");
             return Ok(message);
         }
 
