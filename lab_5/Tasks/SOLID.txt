@@ -1,0 +1,3 @@
+- Move static _citizens dictionary out of CitizenService into a repository interface 
+(e.g., ICitizenRepository). This separates storage from business logic (SRP, DIP).
+
