@@ -15,5 +15,6 @@ namespace eGovWebAPI.Interfaces
 
         public Citizen? GetCitizen(string name);
         public string ShowInfo(string name);
+        string GetCitizenSocialBenefit(Citizen citizen, string BenefitName);
     }
 }

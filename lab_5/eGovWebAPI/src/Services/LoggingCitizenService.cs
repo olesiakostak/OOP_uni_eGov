@@ -35,5 +35,11 @@ namespace eGovWebAPI.Services
             _logger.LogInformation($"Citizen {name} ShowInfo result: {res}");
            return res;
         }
+        public string GetCitizenSocialBenefit(Citizen citizen, string benefitName)
+        {
+            var res = _wrappedCitizen.GetCitizenSocialBenefit(citizen, benefitName);
+            _logger.LogInformation($"Citizen {citizen.Name} GetCitizenSocialBenefit result: {res}");
+            return res;
+        }
     }
 }

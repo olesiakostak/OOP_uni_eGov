@@ -35,6 +35,17 @@ namespace eGovWebAPI.Controllers
             return Ok(citizen.ToCitizenDto());
         }
 
+        [HttpGet("{name}/benefit")]
+        public IActionResult GetSocialBenefit(string name, [FromQuery] string benefitName)
+        {
+            var citizen = _citizenService.GetCitizen(name);
+            if (citizen == null)
+            {
+                return NotFound("Citizen was not found");
+            }
+            return Ok(_citizenService.GetCitizenSocialBenefit(citizen, benefitName));
+        }
+
         [HttpGet]
         public IActionResult GetCitizen()
         {

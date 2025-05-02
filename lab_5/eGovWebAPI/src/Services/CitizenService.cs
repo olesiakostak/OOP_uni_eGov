@@ -6,15 +6,17 @@ namespace eGovWebAPI.Services
     public class CitizenService: ICitizenService
     {
         private static readonly Dictionary<string, Citizen> _citizens = new();
+        private readonly IEnumerable<ISocialBenefitStrategy> _socialBenefitStrategies;
         private readonly ITaxPayer _taxPayer;
         private readonly IDriver _driver;
         private readonly IAddressFactory _addressFactory;
 
-        public CitizenService(ITaxPayer taxPayer, IDriver driver, IAddressFactory addressFactory)
+        public CitizenService(ITaxPayer taxPayer, IDriver driver, IAddressFactory addressFactory, IEnumerable<ISocialBenefitStrategy> socialBenefitStrategies)
         {
             _taxPayer = taxPayer;
             _driver = driver;
             _addressFactory = addressFactory;
+            _socialBenefitStrategies = socialBenefitStrategies;
         }
 
         public string RegisterCitizen(string name, int age, bool isTaxPayer, bool isDriver, bool hasAddress, string? country = null, string? city = null, string? street = null)
@@ -38,6 +40,20 @@ namespace eGovWebAPI.Services
             _citizens.Add(name, citizen);
 
             return $"Citizen {name} was successfully registered!";
+        }
+
+        public string GetCitizenSocialBenefit(Citizen citizen, string benefitName)
+        {
+            var strategy = _socialBenefitStrategies.FirstOrDefault(s => s.BenefitName == benefitName);
+            if (strategy == null)
+            {
+                return $"Benefit '{benefitName}' not found.";
+            }
+            if (!strategy.VerifySocialStatus(citizen))
+            {
+                return $"{citizen.Name} is not eligible for '{benefitName}'.";
+            }
+            return strategy.GetSocialBenefit(citizen);
         }
 
         public Citizen? GetCitizen(string name)
